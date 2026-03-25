@@ -1,0 +1,69 @@
+.analytics-page {}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.platform-table {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.platform-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.platform-rank {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  width: 20px;
+  text-align: center;
+}
+
+.platform-name {
+  font-size: 14px;
+  color: var(--text-secondary);
+  width: 140px;
+  flex-shrink: 0;
+}
+
+.platform-bar-wrap {
+  flex: 1;
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.platform-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.platform-count {
+  font-size: 13px;
+  color: var(--text-muted);
+  width: 60px;
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .charts-grid { grid-template-columns: 1fr; }
+}
