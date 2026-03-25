@@ -6,14 +6,11 @@ import {
   MdAddBox,
   MdBarChart,
   MdBookmark,
-  MdDarkMode,
-  MdLightMode,
   MdMenu,
   MdClose,
 } from 'react-icons/md';
 import { motion } from 'framer-motion';
 import { useApplications } from '../../hooks/useApplications';
-import { useTheme } from '../../context/ThemeContext';
 import './Navbar.css';
 
 const NAV_ITEMS = [
@@ -27,7 +24,6 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const { bookmarked, stats } = useApplications();
-  const { theme, toggleTheme } = useTheme();
 
   // Close mobile nav on route change
   useEffect(() => {
@@ -42,9 +38,6 @@ export default function Navbar() {
           <span>JobTracker</span>
         </div>
         <div className="topbar-actions">
-          <button className="icon-btn" onClick={toggleTheme} aria-label="Toggle theme">
-            {theme === 'dark' ? <MdLightMode size={18} /> : <MdDarkMode size={18} />}
-          </button>
           <button className="icon-btn" onClick={() => setOpen((o) => !o)} aria-label="Toggle menu">
             {open ? <MdClose size={20} /> : <MdMenu size={20} />}
           </button>
@@ -60,10 +53,6 @@ export default function Navbar() {
             <div className="logo-title">JobTracker</div>
             <div className="logo-subtitle">Smart Dashboard</div>
           </div>
-          <button className="theme-toggle" onClick={toggleTheme}>
-            {theme === 'dark' ? <MdLightMode size={18} /> : <MdDarkMode size={18} />}
-            <span>{theme === 'dark' ? 'Light' : 'Dark'} mode</span>
-          </button>
         </div>
 
         <nav className="sidebar-nav">
