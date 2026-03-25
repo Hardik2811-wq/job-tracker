@@ -55,6 +55,35 @@
   margin-bottom: 16px;
 }
 
+.controls-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.view-toggle {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.icon-pill {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.icon-pill + .icon-pill { border-left: 1px solid var(--border); }
+.icon-pill.active { background: var(--bg-card); color: var(--text-primary); }
+
 .results-info {
   font-size: 13px;
   color: var(--text-muted);
@@ -69,6 +98,13 @@
   gap: 16px;
 }
 
+.cards-grid.list {
+  display: flex;
+  flex-direction: column;
+}
+
 @media (max-width: 600px) {
   .cards-grid { grid-template-columns: 1fr; }
+  .controls-row { flex-direction: column; align-items: stretch; }
+  .controls-right { width: 100%; justify-content: space-between; }
 }

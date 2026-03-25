@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { MdAdd, MdBookmark } from 'react-icons/md';
+import { MdAdd, MdBookmark, MdGridView, MdViewList } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import JobCard from '../../components/JobCard/JobCard';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -24,6 +24,7 @@ export default function Applications() {
   const [activeTab, setActiveTab] = useState('All');
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [sortBy, setSortBy] = useState('appliedDate-desc');
+  const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'list'
 
   const debouncedSearch = useDebounce(searchQuery, 500);
 
@@ -54,11 +55,19 @@ export default function Applications() {
 
     // Sort
     const [sortField, sortDir] = sortBy.split('-');
+    const getVal = (item) => {
+      if (sortField.includes('Date')) {
+        const val = item[sortField];
+        return val ? new Date(val).getTime() : 0;
+      }
+      if (sortField === 'salary') return Number(item[sortField] || 0);
+      const raw = item[sortField] ?? '';
+      return typeof raw === 'string' ? raw.toLowerCase() : raw;
+    };
+
     result.sort((a, b) => {
-      let aVal = a[sortField] || '';
-      let bVal = b[sortField] || '';
-      if (sortField === 'salary') { aVal = Number(aVal); bVal = Number(bVal); }
-      if (sortField === 'appliedDate') { aVal = new Date(aVal); bVal = new Date(bVal); }
+      const aVal = getVal(a);
+      const bVal = getVal(b);
       if (aVal < bVal) return sortDir === 'asc' ? -1 : 1;
       if (aVal > bVal) return sortDir === 'asc' ? 1 : -1;
       return 0;
@@ -118,7 +127,25 @@ export default function Applications() {
       {/* Search + Filters */}
       <div className="controls-row">
         <SearchBar value={searchQuery} onChange={setSearchQuery} />
-        <Filters filters={filters} onFilterChange={setFilters} sortBy={sortBy} onSortChange={setSortBy} />
+        <div className="controls-right">
+          <Filters filters={filters} onFilterChange={setFilters} sortBy={sortBy} onSortChange={setSortBy} />
+          <div className="view-toggle" role="group" aria-label="View mode">
+            <button
+              className={`icon-pill ${viewMode === 'grid' ? 'active' : ''}`}
+              onClick={() => setViewMode('grid')}
+              title="Grid view"
+            >
+              <MdGridView size={16} />
+            </button>
+            <button
+              className={`icon-pill ${viewMode === 'list' ? 'active' : ''}`}
+              onClick={() => setViewMode('list')}
+              title="List view"
+            >
+              <MdViewList size={16} />
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Results count */}
@@ -134,12 +161,13 @@ export default function Applications() {
           action={{ label: '+ Add Application', onClick: () => navigate('/applications/new') }}
         />
       ) : (
-        <motion.div className="cards-grid" layout>
+        <motion.div className={`cards-grid ${viewMode === 'list' ? 'list' : ''}`} layout>
           <AnimatePresence>
             {filtered.map((app) => (
               <JobCard
                 key={app.id}
                 application={app}
+                viewMode={viewMode}
                 onEdit={handleEdit}
                 onDelete={handleDelete}
                 onBookmark={handleBookmark}

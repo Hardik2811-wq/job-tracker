@@ -2,52 +2,103 @@
 
 /* ─── Design Tokens ─────────────────────────────────────────── */
 :root {
-  /* Surfaces */
-  --surface-0:      #f3f5f8;   /* page background */
-  --surface-1:      #ffffff;   /* card / panel */
-  --surface-2:      #f0f2f5;   /* inset / secondary */
-  --surface-3:      #e4e8ed;   /* divider / input bg */
-
-  /* Brand */
-  --blue-600:       #0f6cbd;   /* primary action */
-  --blue-700:       #0c5da5;   /* hover */
-  --blue-50:        #eff6fc;   /* tinted bg */
-  --blue-100:       #d0e7f8;
-
-  /* Semantic status */
-  --status-applied:     #0f6cbd;
-  --status-applied-bg:  #eff6fc;
-  --status-interview:   #c96b00;
-  --status-interview-bg:#fff4e0;
-  --status-offer:       #107c10;
-  --status-offer-bg:    #dff6dd;
-  --status-rejected:    #a4262c;
-  --status-rejected-bg: #fed9cc;
-
-  /* Text */
-  --text-primary:   #1b2538;
-  --text-secondary: #4a5568;
-  --text-muted:     #8898aa;
-  --text-inverse:   #ffffff;
-
-  /* Interactive */
-  --border:         #d1d9e6;
-  --border-focus:   #0f6cbd;
-  --ring:           rgba(15, 108, 189, 0.20);
+  /* Layout */
+  --sidebar-w: 232px;
+  --sidebar-width: var(--sidebar-w);
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
 
   /* Shadows */
-  --shadow-xs:  0 1px 2px rgba(0,0,0,0.06);
-  --shadow-sm:  0 1px 4px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.03);
-  --shadow-md:  0 4px 12px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.03);
-  --shadow-lg:  0 8px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.03);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.03);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
 
-  /* Layout */
-  --sidebar-w:  232px;
-  --radius-xs:  4px;
-  --radius-sm:  6px;
-  --radius-md:  8px;
-  --radius-lg:  12px;
-  --radius-xl:  16px;
+  /* Brand (defaults to light mode values) */
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-glow: rgba(99,102,241,0.25);
+
+  --blue-600: var(--accent);
+  --blue-700: var(--accent-hover);
+  --blue-50: #eef2ff;
+  --blue-100: #e0e7ff;
+
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --success: #22c55e;
+
+  /* Light theme (default) */
+  color-scheme: light;
+  --surface-0: #f4f6fb;
+  --surface-1: #ffffff;
+  --surface-2: #eef1f6;
+  --surface-3: #e4e8ed;
+
+  --bg-card: var(--surface-1);
+  --bg-secondary: var(--surface-2);
+
+  --status-applied: #0f6cbd;
+  --status-applied-bg: #eff6fc;
+  --status-interview: #c96b00;
+  --status-interview-bg: #fff4e0;
+  --status-offer: #107c10;
+  --status-offer-bg: #dff6dd;
+  --status-rejected: #a4262c;
+  --status-rejected-bg: #fed9cc;
+
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #6b7280;
+  --text-inverse: #ffffff;
+
+  --border: #d5deeb;
+  --border-hover: #bfc9dd;
+  --border-focus: var(--accent);
+  --ring: rgba(99, 102, 241, 0.22);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --surface-0: #0b1220;
+  --surface-1: #0f172a;
+  --surface-2: #111827;
+  --surface-3: #1f2937;
+
+  --bg-card: #0f172a;
+  --bg-secondary: #0d1424;
+
+  --text-primary: #e5e7eb;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-inverse: #0b1220;
+
+  --border: #1f2a3a;
+  --border-hover: #2d3a4f;
+  --border-focus: #8b93ff;
+  --ring: rgba(139, 147, 255, 0.3);
+
+  --accent: #8b93ff;
+  --accent-hover: #a5adff;
+  --accent-glow: rgba(139,147,255,0.35);
+
+  --blue-600: var(--accent);
+  --blue-700: var(--accent-hover);
+  --blue-50: #141c2f;
+  --blue-100: #1e2740;
+
+  --status-applied: #8b93ff;
+  --status-applied-bg: rgba(139,147,255,0.15);
+  --status-interview: #f7a95c;
+  --status-interview-bg: rgba(247,169,92,0.15);
+  --status-offer: #4ade80;
+  --status-offer-bg: rgba(74,222,128,0.12);
+  --status-rejected: #f87171;
+  --status-rejected-bg: rgba(248,113,113,0.14);
 }
 
 /* ─── Reset ─────────────────────────────────────────────────── */

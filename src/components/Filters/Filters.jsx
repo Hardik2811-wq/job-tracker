@@ -4,8 +4,10 @@ const STATUS_OPTIONS = ['All', 'Applied', 'Interviewing', 'Offer', 'Rejected'];
 const PLATFORM_OPTIONS = ['All', 'LinkedIn', 'Company Website', 'Naukri', 'Wellfound', 'Internshala', 'Referral'];
 const LOCATION_OPTIONS = ['All', 'Remote', 'Hybrid', 'On-site'];
 const SORT_OPTIONS = [
-  { value: 'appliedDate-desc', label: 'Newest First' },
-  { value: 'appliedDate-asc', label: 'Oldest First' },
+  { value: 'appliedDate-desc', label: 'Applied date — Newest' },
+  { value: 'appliedDate-asc', label: 'Applied date — Oldest' },
+  { value: 'interviewDate-asc', label: 'Interview — Soonest' },
+  { value: 'interviewDate-desc', label: 'Interview — Latest' },
   { value: 'company-asc', label: 'Company A–Z' },
   { value: 'salary-desc', label: 'Salary High–Low' },
   { value: 'salary-asc', label: 'Salary Low–High' },

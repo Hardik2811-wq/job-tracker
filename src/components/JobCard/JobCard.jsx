@@ -4,14 +4,14 @@ import { getStatusColor, getStatusBg, formatDate, salaryDisplay } from '../../ut
 import { getLogoUrl } from '../../services/api';
 import './JobCard.css';
 
-export default function JobCard({ application, onEdit, onDelete, onBookmark }) {
+export default function JobCard({ application, onEdit, onDelete, onBookmark, viewMode = 'grid' }) {
   const { company, domain, role, location, salary, status, appliedDate, bookmarked } = application;
   const statusColor = getStatusColor(status);
   const statusBg = getStatusBg(status);
 
   return (
     <motion.div
-      className="job-card"
+      className={`job-card ${viewMode === 'list' ? 'list' : ''}`}
       layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
