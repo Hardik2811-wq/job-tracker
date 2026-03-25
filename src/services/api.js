@@ -1,8 +1,11 @@
 import axios from 'axios';
 import { generateId } from '../utils/helpers';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://dummyjson.com';
+const LOGO_BASE_URL = import.meta.env.VITE_LOGO_BASE_URL || 'https://logo.clearbit.com';
+
 const axiosInstance = axios.create({
-  baseURL: 'https://dummyjson.com',
+  baseURL: API_BASE_URL,
   timeout: 10000,
 });
 
@@ -29,7 +32,7 @@ const getRoles = (productTitle) => {
 };
 
 export const getLogoUrl = (domain) =>
-  `https://logo.clearbit.com/${domain}`;
+  `${LOGO_BASE_URL}/${domain}`;
 
 export const fetchMockJobs = async () => {
   const response = await axiosInstance.get('/products?limit=8');
